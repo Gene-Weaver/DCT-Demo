@@ -106,11 +106,11 @@ end
 function Load_Callback(hObject, eventdata, handles)
     handles = guidata(hObject);
 
-    [handles.ImageFile,handles.folder] = uigetfile()
-    handles.fullFileName = fullfile(handles.folder, handles.ImageFile)
+    [handles.ImageFile, folder] = uigetfile()
+    handles.fullFileName = fullfile(folder, baseName)
     [handles.filepath,handles.fName,~] = fileparts(handles.ImageFile);
-    addpath(handles.folder)
-    handles.Image = imread(fullfile(handles.ImageFile));
+    addpath(handles.filepath)
+    handles.Image = imread(fullpath(handles.ImageFile));
 
     handles.ext = '.png';
     
@@ -126,7 +126,7 @@ end
 function Save_Callback(hObject, eventdata, handles)
     handles = guidata(hObject);
     try
-        sName = strcat(fullfile(handles.folder,handles.saveName),handles.ext)
+        sName = strcat(fullfile(handles.filepath,handles.saveName),handles.ext);
         imwrite(handles.Cimage,sName);
     catch
     end

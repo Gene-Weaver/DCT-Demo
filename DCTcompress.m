@@ -106,8 +106,8 @@ end
 function Load_Callback(hObject, eventdata, handles)
     handles = guidata(hObject);
 
-    [handles.ImageFile,handles.folder] = uigetfile()
-    handles.fullFileName = fullfile(handles.folder, handles.ImageFile)
+    [handles.ImageFile,handles.folder] = uigetfile();
+    handles.fullFileName = fullfile(handles.folder, handles.ImageFile);
     [handles.filepath,handles.fName,~] = fileparts(handles.ImageFile);
     addpath(handles.folder)
     handles.Image = imread(fullfile(handles.ImageFile));
@@ -118,7 +118,7 @@ function Load_Callback(hObject, eventdata, handles)
     imshow(handles.Image);
     axes(handles.axes2);
     cla;
-    
+               
     guidata(hObject,handles);
 end
 
